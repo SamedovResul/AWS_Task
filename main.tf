@@ -326,7 +326,7 @@ resource "aws_ssm_parameter" "app_secret" {
 # ===========================================
 resource "aws_key_pair" "my_key" {
   key_name   = "aws-task-key"
-  public_key = file(pathexpand("~/.ssh/id_ed25519.pub"))
+  public_key = file(pathexpand(var.ssh_public_key_path))
 
   tags = {
     Name = "AWS-Task-Key"
