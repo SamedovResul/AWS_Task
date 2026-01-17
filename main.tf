@@ -304,11 +304,17 @@ resource "aws_iam_instance_profile" "app_profile" {
 # ===========================================
 # SSM PARAMETER (Secrets)
 # ===========================================
+variable "app_secret" {
+  description = "Application secret key"
+  type        = string
+  sensitive   = true
+}
+
 resource "aws_ssm_parameter" "app_secret" {
   name        = "/app/secret_key"
   description = "Application secret key"
   type        = "SecureString"
-  value       = "demo-secret-12345"
+  value       = var.app_secret
 
   tags = {
     Name = "App-Secret-Key"
